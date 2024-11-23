@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>$DAVID Marketcap Progress</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      text-align: center;
+      background-color: #1c2833; /* Dark bluish-gray background */
+      color: #ffffff; /* White font */
+      padding: 20px;
+    }
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    header img {
+      width: 128px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    header p {
+      margin-top: -10px; /* Reduces space between title and text */
+      font-size: 0.9em;
+    }
+    nav {
+      margin-bottom: 20px;
+      font-size: 0.9em;
+    }
+    nav a {
+      color: #5dade2; /* Light blue links */
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 600;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .progress-container {
+      width: 80%;
+      margin: 20px auto;
+      background-color: #2e4053; /* Progress bar background */
+      border-radius: 25px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 30px;
+      background-color: #5dade2; /* Light blue progress bar */
+      text-align: center;
+      line-height: 30px;
+      color: #ffffff; /* Text inside the bar */
+      width: 0%;
+      transition: width 0.5s;
+    }
+    .marketcap-details {
+      margin-top: 10px;
+      font-size: 1.2em;
+    }
+    .marketcap-details span {
+      display: block;
+      margin-top: 5px;
+    }
+    iframe {
+      width: 100%;
+      border: none;
+      margin-top: 20px;
+    }
+    .share-button {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 1em;
+      font-weight: 600;
+      color: #ffffff;
+      background-color: #1da1f2; /* Twitter (X) blue */
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .donate-section {
+      margin-top: 20px;
+      font-size: 0.9em;
+    }
+    .donate-section a {
+      color: #5dade2; /* Light blue links */
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .donate-section a:hover {
+      text-decoration: underline;
+    }
+    .donate-section p {
+      margin: 5px 0;
+    }
+    @media (min-width: 768px) {
+      iframe {
+        height: 800px; /* Height for desktop */
+      }
+    }
+    @media (max-width: 767px) {
+      iframe {
+        height: 600px; /* Height for mobile */
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://pump.mypinata.cloud/ipfs/QmeVFe15jVvk6oZtbi3Rn4Q38VBjnverB86ZJZFHPuQ31L?img-width=256&img-dpr=2&img-onerror=redirect" alt="$DAVID Logo">
+    <h1>$DAVID TO 100M ($DAVID)</h1>
+    <p>I will stream my daily life til we hit 100m. Slow and steady wins the race</p>
+    <nav>
+      <a href="https://pump.fun/coin/7QoDuCZUVj31MYhRWc1SB1Nx6eZCocjdh2Vv1ptPpump" target="_blank">Pump.fun</a>
+      <a href="https://dexscreener.com/solana/7jjuasasusfjcgkwzqwgsfp6x82ngldwkqtbnxrbqtoj" target="_blank">Dexscreener</a>
+    </nav>
+    <div class="donate-section">
+      <p><strong>Donate to David:</strong></p>
+      <p>Wallet Address: <code>7BWRv5RPQ9vRRnH4nmvNMFYoAD9QjJtFkYfoF3nX4yCW</code></p>
+      <p><a href="https://solscan.io/account/7BWRv5RPQ9vRRnH4nmvNMFYoAD9QjJtFkYfoF3nX4yCW" target="_blank">View on Solscan</a></p>
+    </div>
+  </header>
+
+  <div class="progress-container">
+    <div class="progress-bar" id="progress-bar">0%</div>
+  </div>
+  <div class="marketcap-details">
+    <span id="total-marketcap">Marketcap: $0</span>
+    <span id="remaining-goal">Remaining: $100,000,000</span>
+  </div>
+
+  <a class="share-button" href="https://twitter.com/intent/tweet?text=Join+the+journey+to+100M+with+%24DAVID!+Check+it+out+here&url=YOUR_PAGE_URL" target="_blank">
+    Share on X
+  </a>
+
+  <iframe id="geckoterminal-embed" title="GeckoTerminal Embed" 
+          src="https://www.geckoterminal.com/solana/pools/7jjUAsASuSfJCgKwZQWgSFP6x82ngLDwKQTbNXrbQtoj?embed=1&info=0&swaps=1" 
+          allow="clipboard-write" allowfullscreen>
+  </iframe>
+
+  <script>
+    const apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjQ1MjFhZTc4LTBkYzEtNDBhMS04YTc4LWUxYTRiYjJkNmRlOSIsIm9yZ0lkIjoiNDE3MzYzIiwidXNlcklkIjoiNDI5MTA2IiwidHlwZUlkIjoiZWNkMDAzMTktNWViYi00ZGQ4LWFlYjQtMGYxOTEwYTRlN2EzIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3MzIzMjEyMjYsImV4cCI6NDg4ODA4MTIyNn0.luZi5le3xyzpwh8_wXwEC4iLSHyV4aM_gw2GeLhW6e4";
+    const tokenAddress = "7QoDuCZUVj31MYhRWc1SB1Nx6eZCocjdh2Vv1ptPpump";
+    const totalSupply = 1000000000; // Fixed total supply
+
+    async function fetchTokenPrice() {
+      const url = `https://solana-gateway.moralis.io/token/mainnet/${tokenAddress}/price`;
+
+      try {
+        const response = await fetch(url, {
+          headers: {
+            "accept": "application/json",
+            "X-API-Key": apiKey
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        return data.usdPrice || 0; // Returns price in USD
+      } catch (error) {
+        console.error("Error fetching token price:", error);
+        return 0;
+      }
+    }
+
+    async function fetchMarketcap() {
+      try {
+        const usdPrice = await fetchTokenPrice();
+        if (usdPrice === 0) {
+          throw new Error("Insufficient data to calculate market cap");
+        }
+
+        const marketCap = usdPrice * totalSupply;
+        const remaining = 100000000 - marketCap;
+
+        document.getElementById('total-marketcap').innerText = `Marketcap: ${marketCap.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`;
+        document.getElementById('remaining-goal').innerText = `Remaining: ${Math.max(remaining, 0).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`;
+
+        const progress = Math.min((marketCap / 100000000) * 100, 100);
+        document.getElementById('progress-bar').style.width = progress + "%";
+        document.getElementById('progress-bar').innerText = progress.toFixed(2) + "%";
+      } catch (error) {
+        console.error("Error fetching market cap:", error);
+        document.getElementById('total-marketcap').innerText = "Marketcap: Failed to load";
+        document.getElementById('remaining-goal').innerText = "Remaining: Failed to load";
+      }
+    }
+
+    fetchMarketcap();
+    setInterval(fetchMarketcap, 30000);
+  </script>
+</body>
+</html>
